@@ -1,5 +1,5 @@
 const { Schema, model } = require('mongoose');
-const ObjectId = Schema.Types.ObjectId;
+// const ObjectId = Schema.Types.ObjectId;
 
 const customerSchema = new Schema({
   name: {
@@ -18,10 +18,10 @@ const customerSchema = new Schema({
     minlength: 5,
     maxlength: 50
   },
-  rentals: [{
-    type: ObjectId,
-    ref: 'Rental'
-  }]
+  // rentals: [{
+  //   type: ObjectId,
+  //   ref: 'Rental'
+  // }]
 });
 
 module.exports = model('Customer', customerSchema);

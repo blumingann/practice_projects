@@ -1,0 +1,188 @@
+/* Mi código CSS */
+
+body {
+  padding-top: 60px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Lato", sans-serif;
+}
+
+/*****************************************************************
+
+    HEADER
+
+/*****************************************************************/
+
+#header {
+  background-color: #222;
+  border-bottom: 4px solid #ff8f00;
+}
+
+#header-logo {
+  width: auto;
+  height: 20px;
+}
+
+/*****************************************************************
+
+    HOME
+
+/*****************************************************************/
+
+#carousel-container {
+  border-bottom: 4px solid #ff8f00;
+  margin-bottom: 30px;
+  color: white;
+  text-align: center;
+  margin-right: 0;
+}
+.carousel-img img {
+  object-fit: cover;
+  height: 600px;
+}
+
+#home h1 span {
+  font-weight: 300;
+}
+
+#home .card h4 {
+  font-size: 1.24rem;
+  margin: 0.3rem 0 0.2rem;
+}
+
+@media (max-width: 767px) {
+  .carousel-img img {
+    height: 250px;
+  }
+  .itemResultado img {
+    height: 150px;
+    margin-top: 25px;
+  }
+  #home h1 {
+    font-size: 26px;
+  }
+}
+
+/*****************************************************************
+
+    FOOTER
+
+/*****************************************************************/
+
+#footer {
+  border-top: 4px solid #ff8f00;
+  background-color: #222;
+  margin-top: 40px;
+  color: #eeeeee;
+  padding: 40px 0 40px 0;
+  font-size: 16px;
+}
+
+#footer-logo {
+  width: auto;
+  height: 20px;
+  margin-bottom: 15px;
+}
+
+#footer ul {
+  margin: 0;
+  padding: 0;
+}
+
+#footer ul li {
+  list-style: none;
+  margin-bottom: 6px;
+}
+
+#footer ul li a,
+#footer ul li a:visited {
+  color: #eeeeee;
+}
+
+/*****************************************************************
+
+    VENTAS
+
+/*****************************************************************/
+
+#headerVentas {
+  padding: 25px;
+}
+#tipoCambio {
+  float: right;
+  text-align: right;
+}
+#filtro {
+  text-align: left;
+}
+
+#imgAuto img {
+  float: left;
+  width: auto;
+  border-color: black;
+  padding: 5px;
+  background-color: rgba(221, 219, 219, 0.637);
+  margin-bottom: 15px;
+}
+.badge {
+  position: absolute;
+  background-color: #ff8f00;
+  color: white;
+  border-radius: 5px;
+}
+img {
+  border-radius: 5px;
+  height: 250px;
+}
+#infoAuto {
+  float: right;
+  margin-bottom: 25px;
+}
+.star {
+  color: orange;
+}
+#formFiltro {
+  background-color: rgb(233, 233, 233);
+  padding: 25px;
+  border-radius: 5px;
+}
+label {
+  font-weight: bold;
+}
+.btn {
+  margin-top: 25px;
+}
+#btn-filter {
+  color: white;
+  background-color: #ff8f00;
+}
+
+#detalles {
+  float: right;
+}
+
+.container h3 {
+  margin-top: 25px;
+}
+#imgLogoAbout {
+  height: 25px;
+  width: auto;
+  filter: invert();
+  margin-top: 25px;
+}
+.card-deck {
+  text-align: center;
+}
+.card-img-top {
+  padding: 10px;
+  border-radius: 15px;
+}
+.card-footer {
+  color: #3b5998;
+}

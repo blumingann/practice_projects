@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Web Client</title>
+    <style>
+      div[data-controls] {
+        position: fixed;
+      }
+
+      div[data-messages] {
+        padding-top: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <div data-controls>
+      <form
+        data-message-input
+        onsubmit="sendMessage(this.elements['msg'], event)"
+      >
+        <label for="msg">Send message: </label>
+        <input name="msg" type="text" placeholder="Type a message" />
+      </form>
+    </div>
+    <div data-messages></div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      const client = io();
+
+      const sendMessage = (input, event) => {
+        event.preventDefault();
+
+        client.emit('new-message', input.value);
+        addMessage(input.value);
+
+        input.value = '';
+        return false;
+      };
+
+      // client.on('new-message-ok', (payload) => {
+      //   addMessage(payload);
+      // });
+
+      // const addMessage = (content) => {
+      //   const message = document.createElement('p');
+      //   message.innerText = content;
+      //   const messageContainer = document.querySelector('div[data-messages]');
+      //   messageContainer.appendChild(message);
+      // };
+    </script>
+  </body>
+</html>

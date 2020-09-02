@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description"
+        content="Automotora dedicada a la venta de los mejores autos del mercado - Nuevos y Usados">
+    <meta name="author" content="Automotora VIP">
+
+    <title>Ventas | Automotora VIP</title>
+
+    <!-- CSS de Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- CSS Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+    <!-- CSS Google Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
+
+    <!-- CSS Propio -->
+    <link rel="stylesheet" href="css/styles.css">
+
+</head>
+
+<body>
+
+    <nav id="header" class="navbar navbar-expand-md fixed-top navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img id="header-logo" src="img/automotora_vip_logo.png" alt="AutoVIP" />
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#links"
+                aria-controls="links" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div id="links" class="collapse navbar-collapse justify-content-end">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="ventas.html">Venta 0km</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="ventas.html">Venta Usados</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="sobre-nosotros.html">Sobre Nosotros</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-toggle="modal" data-target="#contacto-modal">Contacto</a>
+                    </li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container -->
+    </nav>
+
+    <!--Content-->
+    <div class="container" id="app">
+
+        <!--Header-->
+        <div class="row" id="headerVentas">
+            <div class="col-md-6">
+                <h2>Ventas</h2>
+            </div>
+            <div class="col-md-6" id="tipoCambio">
+                <h6> <i class="fas fa-exchange-alt"></i> UYU/USD: {{rates.uyu}}</h6>
+            </div>
+        </div>
+        <hr>
+        <!--End Header-->
+
+        <!--Filtro y Listado-->
+        <div class="row">
+            <div class="col-md-3">
+                <!--Start Filtro-->
+                <div id="formFiltro">
+                    <div>
+                        <h5>Filtro</h5>
+                        <hr>
+                        <label for="year">Año</label>
+                        <select class="form-control form-control-sm" name="year" id="formYear">
+                            <option value="">Seleccionar...</option>
+                            <option v-for="year in years" v-bind:value="year"> {{year}} </option>
+                        </select>
+                        <label for="brand">Marca</label>
+                        <select class="form-control form-control-sm" name="brand" id="formBrand">
+                            <option value="">Seleccionar...</option>
+                            <option v-for="brand in brands" v-bind:value="brand"> {{brand}} </option>
+                        </select>
+                        <label for="model">Modelo</label>
+                        <select class="form-control form-control-sm" name="model" id="formModel">
+                            <option value="">Seleccionar...</option>
+                            <option v-for="model in models" v-bind:value="model"> {{model}} </option>
+                        </select>
+                        <label for="status">Estado</label>
+                        <select class="form-control form-control-sm" name="status" id="formStatus">
+                            <option value="">Seleccionar...</option>
+                            <option value="1">Nuevo</option>
+                            <option value="0">Usado</option>
+                        </select>
+                        <button type="button" class="btn btn-secondary btn-block" id="btn-filter"> <i
+                                class="fas fa-search"></i>
+                            Filtrar</button>
+                    </div>
+                    <button type="button" class="btn btn-outline-secondary btn-block" id="btnChangeRate"><i
+                            class="fas fa-dollar-sign"></i>
+                        Cambiar moneda</button>
+                </div>
+                <!--End Filtro-->
+            </div>
+            <div class="col-md-9">
+
+                <!--Mensaje error-->
+                <div id="no-result" class="alert alert-warning d-none" role="alert">
+                    Lo sentimos. No fue posible encontrar autos con las características marcadas
+                </div>
+                <!--End Error-->
+                <!--Item Resultado-->
+                <div class="itemResultado">
+                    <div class="row" v-for="auto in autos">
+                        <div class="col-md-4">
+                            <div id="imgAuto">
+                                <span class="badge badge-warning" v-show="auto.status == 1">Nuevo</span>
+                                <img class="img-fluid" v-bind:src="auto.image" v-bind:alt="auto.brand">
+                            </div>
+                        </div>
+                        <div class="col-md-8" id="infoAuto">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h5>{{auto.brand}}{{auto.model}}</h5>
+                                </div>
+                                <div class="col-md-6" id="detalles">
+                                    <p> {{auto.year}} | USD {{formatPrice(auto.price_usd)}}|
+                                        <!--rating-->
+                                        <span v-for="rating in auto.rating" class="fa fa-star star"></span><span
+                                            v-for="rating in 5- auto.rating" class="far fa-star star"></span>
+                                    </p>
+                                </div>
+
+                            </div>
+
+                            <p>{{auto.description}}</p>
+                            <button type="button" class="btn btn-success"><i class="fas fa-shopping-cart"></i>
+                                Comprar</button>
+                            <button type="button" class="btn btn-outline-secondary"><i class="far fa-plus-square"></i>
+                                Más Información</button>
+                            <button type="button" class="btn btn-outline-secondary"><i class="fas fa-share-square"></i>
+                                Compartir</button>
+                        </div>
+                        <hr>
+                    </div>
+                </div>
+                <!--End Item Resultado-->
+
+                <hr>
+            </div>
+        </div>
+    </div>
+
+    <!--End Content-->
+
+    <!--Footer-->
+    <div id="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <img id="footer-logo" src="img/automotora_vip_logo.png" alt="AutoVIP" />
+
+                </div><!-- /.col -->
+                <div class="col-md-3">
+                    <ul>
+                        <li><a href="ventas.html">Venta 0km</a></li>
+                        <li><a href="ventas.html">Venta Usados</a></li>
+                    </ul>
+                </div><!-- /.col -->
+                <div class="col-md-3">
+                    <ul>
+                        <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
+                        <li><a href="#" data-toggle="modal" data-target="#contacto-modal">Contacto</a></li>
+                    </ul>
+                </div><!-- /.col -->
+                <div class="col-md-3">
+                    <p style="color:#DDD;">Copyright &copy; AutoVIP 2019</p>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+
+        </div><!-- /.container -->
+    </div><!-- /#footer -->
+
+    <div id="contacto-modal" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Contacto</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form name="contactForm" method="POST" data-netlify="true">
+                        <div class="form-group">
+                            <label for="contactName">Nombre</label>
+                            <input type="text" name="contactName" value="" class="form-control"
+                                placeholder="Ingresar nombre completo...">
+                        </div><!-- /.form-group -->
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" name="email" value="" class="form-control"
+                                placeholder="Ingresar Email...">
+                        </div><!-- /.form-group -->
+                        <div class="form-group">
+                            <label for="message">Mensaje</label>
+                            <textarea name="message" rows="8" cols="40" class="form-control"
+                                placeholder="Ingresar mensaje..."></textarea>
+                        </div><!-- /.form-group -->
+                        <button type="submit" class="btn btn-success" data-dismiss="modal">Enviar</button>
+                    </form>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- JS de Popper.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+
+    <!-- JS de Bootstrap -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+    <!-- JS de Vue.js -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+
+    <!-- JS Propio -->
+    <script src="js/app.js"> </script>
+
+</body>
+
+</html>

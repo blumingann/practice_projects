@@ -1,0 +1,46 @@
+{
+  "name": "flixity",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "dev": "nodemon index.js",
+    "debug": "nodemon --inspect=9229 index.js",
+    "test": "jest --watchAll --verbose --coverage",
+    "start": "node index.js"
+  },
+  "engines": {
+    "node": "14.4.0"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/winston": "^2.4.4",
+    "bcrypt": "^5.0.0",
+    "compression": "^1.7.4",
+    "config": "^3.3.1",
+    "debug": "^4.1.1",
+    "express": "^4.16.2",
+    "express-async-errors": "^3.1.1",
+    "express-jwt": "^6.0.0",
+    "helmet": "^3.23.3",
+    "joi": "^13.1.0",
+    "lodash": "^4.17.20",
+    "moment": "^2.27.0",
+    "mongoose": "^5.9.28",
+    "morgan": "^1.10.0",
+    "pug": "^3.0.0",
+    "supertest": "^4.0.2",
+    "validator": "^13.1.1",
+    "winston": "^2.4.5",
+    "winston-mongodb": "^5.0.1"
+  },
+  "devDependencies": {
+    "jest": "^26.4.2",
+    "nodemon": "^2.0.4"
+  }
+}

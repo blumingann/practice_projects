@@ -3,7 +3,7 @@ const router = express.Router();
 
 router.get('/', (req, res) => {
   res.render('index', {
-    title: 'Mi Express App',
+    title: 'My Express App',
     message: 'Hello'
   })
 })

@@ -3,6 +3,7 @@ const Customer = require('../models/customer.model');
 const Movie = require('../models/movie.model');
 const express = require('express');
 const router = express.Router();
+const auth = require('../middleware/auth') // Authorization middleware with token
 
 router.get('/', async (req, res, next) => {
 
@@ -11,7 +12,7 @@ router.get('/', async (req, res, next) => {
 
 });
 
-router.post('/', async (req, res, next) => {
+router.post('/', auth, async (req, res, next) => {
 
   const customer = await Customer.findById(req.body.customer);
   if (!customer) return res.status(400).send('Invalid customer.');

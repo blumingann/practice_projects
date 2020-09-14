@@ -26,7 +26,7 @@ const userSchema = new Schema({
 });
 
 userSchema.methods.generateAuthToken = function () {
-  const jwtPayload = { _id: this._id, email: this.email, isAdmin: this.isAdmin };
+  const jwtPayload = { _id: this._id, email: this.email, isAdmin: this.isAdmin, name: this.name };
 
   const token = jwt.sign(jwtPayload, config.get('SECRET_KEY'))
 

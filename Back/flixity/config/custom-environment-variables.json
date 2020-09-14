@@ -1,4 +1,4 @@
 {
   "SECRET_KEY": "TOP_SECRET",
-  "db": "flixityDB"
+  "db": "flixity_db"
 }

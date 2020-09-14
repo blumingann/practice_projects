@@ -386,3 +386,7 @@
 {"level":"info","message":"Listening on port 3900...","timestamp":"2020-09-14T20:26:39.971Z"}
 {"level":"info","message":"Connected to mongodb://localhost/flixity...","timestamp":"2020-09-14T20:26:39.994Z"}
 {"message":"Cast to ObjectId failed for value \"Comedy\" at path \"_id\" for model \"Genre\"","stack":"CastError: Cast to ObjectId failed for value \"Comedy\" at path \"_id\" for model \"Genre\"\n    at model.Query.exec (C:\\Users\\Usuario\\Google Drive\\Proyectos\\practice_projects\\Back\\flixity\\node_modules\\mongoose\\lib\\query.js:4351:21)\n    at model.Query.Query.then (C:\\Users\\Usuario\\Google Drive\\Proyectos\\practice_projects\\Back\\flixity\\node_modules\\mongoose\\lib\\query.js:4443:15)\n    at processTicksAndRejections (internal/process/task_queues.js:97:5)","stringValue":"\"Comedy\"","kind":"ObjectId","value":"Comedy","path":"_id","reason":{},"level":"error","timestamp":"2020-09-14T20:26:45.328Z"}
+{"level":"info","message":"Listening on port 3900...","timestamp":"2020-09-14T21:55:58.390Z"}
+{"level":"info","message":"Connected to mongodb://localhost/flixity...","timestamp":"2020-09-14T21:55:58.423Z"}
+{"level":"info","message":"Listening on port 3900...","timestamp":"2020-09-14T21:59:45.560Z"}
+{"level":"info","message":"Connected to mongodb://localhost/flixity...","timestamp":"2020-09-14T21:59:45.582Z"}

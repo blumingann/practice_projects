@@ -7,7 +7,6 @@ const rentalsRouter = require('../routes/rentals.route')
 const returnRouter = require('../routes/returns.route')
 const userRouter = require('../routes/user.route')
 const authRouter = require('../routes/auth.route')
-const homeRoute = require('../routes/home.route')
 
 module.exports = function (app) {
   app.use(express.json());
@@ -18,5 +17,4 @@ module.exports = function (app) {
   app.use('/api/returns', returnRouter)
   app.use('/api/register', userRouter)
   app.use('/api/login', authRouter)
-  app.use('/', homeRoute)
 }

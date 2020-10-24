@@ -1,0 +1,31 @@
+h2 {
+  color: white;
+  text-align: center;
+  margin-bottom: 20px;
+}
+.btn-light {
+  text-align: center;
+  margin-right: px;
+  margin-bottom: 30px;
+  margin-left: 25px;
+}
+
+.card-img-top {
+  height: 11rem;
+  padding: 5px;
+}
+
+.card {
+  margin-bottom: 10px;
+  margin-left: 25px;
+}
+
+.card-footer {
+  padding: 5px;
+  cursor: pointer;
+}
+
+.form-control {
+  width: 50%;
+  margin-left: 25px;
+}

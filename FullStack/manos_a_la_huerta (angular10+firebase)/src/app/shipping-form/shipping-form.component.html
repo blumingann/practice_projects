@@ -1,0 +1,27 @@
+<form #f="ngForm">
+  <div class="form-group">
+    <label for="">Nombre</label>
+    <input #name="ngModel" name="name" [(ngModel)]="shipping.name" type="text" class="form-control" required>
+    <div class="alert alert-danger" *ngIf="name.touched && name.invalid">
+      <div *ngIf="name.errors.required">El nombre es requerido</div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="">Dirección</label>
+    <input #addressLine1="ngModel" name="addressLine1" [(ngModel)]="shipping.addressLine1" type="text"
+      class="form-control" placeholder="Ingresa la dirección de envío" required>
+    <div class="alert alert-danger" *ngIf="addressLine1.touched && addressLine1.invalid">
+      <div *ngIf="addressLine1.errors.required">La dirección es requerida</div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="">Teléfono de contacto</label>
+    <input #phone="ngModel" name="phone" [(ngModel)]="shipping.phone" type="text" class="form-control" required>
+    <div class="alert alert-danger" *ngIf="phone.touched && phone.invalid">
+      <div *ngIf="phone.errors.required">El teléfono de contacto es requerido</div>
+    </div>
+  </div>
+  <button [disabled]="!f.valid" (click)="placeOrder()" class="btn btn-primary">Enviar orden<fa-icon
+      [icon]="faPaperPlane">
+    </fa-icon></button>
+</form>

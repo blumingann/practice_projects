@@ -1,0 +1,61 @@
+<bs-navbar></bs-navbar>
+<div class="row">
+  <div class="col-md-6">
+    <form #f="ngForm" (ngSubmit)="save(f.value)">
+      <div class="form-group">
+        <label for="title">Nombre</label>
+        <input required #title="ngModel" [(ngModel)]="product.title" name="title" id="title" type="text"
+          class="form-control">
+      </div>
+      <div class="alert alert-danger" *ngIf="title.touched && title.invalid">El nombre es requerido</div>
+      <div class="form-group">
+        <label for="price">Precio</label>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text">$</span>
+          </div>
+          <input required #price="ngModel" [(ngModel)]="product.price" name="price" type="text" class="form-control"
+            aria-label="importe" [min]="0">
+        </div>
+        <div class="alert alert-danger" *ngIf="price.touched && price.invalid">
+          <div *ngIf="price.errors.required">El precio es requerido</div>
+          <div *ngIf="price.errors.min">El precio no puede ser negativo</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="category">Categoría</label>
+        <select #category="ngModel" required [(ngModel)]="product.category" name="category" id="category"
+          class="form-control">
+          <option value=""></option>
+          <option value="frutas">Frutas</option>
+          <option value="verduras">Verduras</option>
+          <option value="otros">Otros</option>
+        </select>
+      </div>
+      <div class="alert alert-danger" *ngIf="category.touched && category.invalid">La categoría es requerida</div>
+      <div class="form-group">
+        <label for="imageUrl">URL Imagen</label>
+        <input required #imageUrl="ngModel" [(ngModel)]="product.imageUrl" name="imageUrl" id="imageUrl" type="text"
+          class="form-control" url>
+      </div>
+      <div class="alert alert-danger" *ngIf="imageUrl.touched && imageUrl.invalid">
+        <div *ngIf="imageUrl.errors.required">La ruta de la imagen es requerida</div>
+        <div *ngIf="imageUrl.errors.url">La ruta ingresada no es válida</div>
+      </div>
+      <button type="button" (click)="save(product)" class="btn btn-success">Guardar <fa-icon [icon]="faSave"></fa-icon>
+      </button>
+      <button type="button" (click)="deleteProduct()" class="btn btn-danger">Elimiar <fa-icon [icon]="faTrash">
+        </fa-icon>
+      </button>
+    </form>
+  </div>
+  <div id="preview" class="col-md-6">
+    <div *ngIf="product.title" class="card" style="width: 18rem;">
+      <img class="card-img-top" [src]="product.imageUrl" *ngIf="product.imageUrl">
+      <div class="card-body">
+        <h5 class="card-title">{{product.title}}</h5>
+        <p class="card-text">{{product.price | currency:'USD':'symbol'}}</p>
+      </div>
+    </div>
+  </div>
+</div>

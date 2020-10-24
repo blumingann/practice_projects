@@ -1,0 +1,17 @@
+<div class="row no-gutters">
+  <div class="col-2">
+    <button (click)="removeFromCart(product)" class="btn btn-danger ml-1">
+      - <a class="route_link" ng-click="refresh($event)"></a>
+    </button>
+  </div>
+  <div class="col-8 text-center">
+    <a *ngIf="cart | async as cart">
+      Cantidad: {{cart.getQuantity(product)}}
+    </a>
+  </div>
+  <div class="col-2">
+    <button (click)="addToCart(product)" class="btn btn-success ml-2">
+      + <a class="route_link" ng-click="refresh($event)"></a>
+    </button>
+  </div>
+</div>

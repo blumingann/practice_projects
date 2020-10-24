@@ -1,0 +1,24 @@
+<div class="container">
+  <h1>Mis ordenes</h1>
+  <ng-container *ngIf="order$ | async as orders">
+    <ng-container *ngIf="orders.length > 0; else noOrder">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Fecha</th>
+            <th>Importe total</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let order of orders">
+            <td>{{order.datePlaced | date}}</td>
+            <td>{{order.totalPrice | currency:'USD':'symbol'}}</td>
+            <td><a [routerLink]="['/order-details/', order.$key]">View</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </ng-container>
+    <ng-template #noOrder>No hay ordenes por el momento</ng-template>
+  </ng-container>
+</div>

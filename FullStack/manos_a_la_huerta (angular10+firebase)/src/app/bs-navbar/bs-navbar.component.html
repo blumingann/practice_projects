@@ -1,0 +1,42 @@
+<nav class="navbar navbar-expand-md navbar-light bg-light fixed-top" role="navigation">
+  <a class="navbar-brand" routerLink="/">
+    Home
+  </a>
+  <button class="navbar-toggler" type="button" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="true"
+    data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false"
+    aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbar" [ngbCollapse]="!isCollapsed">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/shopping-cart">
+          <fa-icon [icon]="faShoppingCart"></fa-icon> <span class="badge badge-warning badge-pill"
+            *ngIf="cart | async as cart">
+            {{cart.totalItemsCount}}
+          </span>
+        </a>
+      </li>
+      <li *ngIf="!appUser" class="nav-item">
+        <a class="nav-link" routerLink="/login">Login</a>
+      </li>
+
+      <li *ngIf="appUser" ngbDropdown class="nav-item dropdown">
+        <a ngbDropdownToggle class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">{{appUser.name}}</a>
+        <div ngbDropdownMenu aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" routerLink="/my/orders">Mis Ordenes</a>
+          <a *ngIf="appUser.isAdmin" class="dropdown-item" routerLink="/admin/orders">Manejar Ordenes</a>
+          <a *ngIf="appUser.isAdmin" class="dropdown-item" routerLink="/admin/products">Manejar Productos</a>
+          <a class="dropdown-item" (click)="logout()">Logout</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+  integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script>window.jQuery || document.write('<script src="/docs/4.5/assets/js/vendor/jquery.slim.min.js"><\/script>')</script>
+<script src="/docs/4.5/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-LtrjvnR4Twt/qOuYxE721u19sVFLVSA4hf/rRt6PrZTmiPltdZcI7q7PXQBYTKyf" crossorigin="anonymous"></script>

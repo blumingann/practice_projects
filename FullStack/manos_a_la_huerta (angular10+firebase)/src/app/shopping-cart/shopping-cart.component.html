@@ -1,0 +1,37 @@
+<div class="container" *ngIf="cart | async as cart">
+  <h1>Carrito de compras</h1>
+  <p>Actualmente tienes {{cart.totalItemsCount}} articulos en el carrito <a routerLink="/" (click)="clearCart()"
+      class="btn btn-light btn-sm">Vaciar</a>
+  </p>
+  <table class="table">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Producto</th>
+        <th>Cantidad</th>
+        <th>Sub-Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let productId of cart.productIds">
+        <td>
+          <img [src]="cart.items[productId].imageUrl" class="thumbnail">
+        </td>
+        <td>{{cart.items[productId].title}}</td>
+        <td>{{cart.items[productId].quantity}}</td>
+        <td>{{cart.items[productId].price * cart.items[productId].quantity | currency:'USD':'symbol'}}</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td></td>
+        <td></td>
+        <td class="font-weight-bold">Total carrito</td>
+        <td class="font-weight-bold">{{cart.totalPrice | currency:'USD':'symbol'}}</td>
+      </tr>
+    </tfoot>
+  </table>
+  <div>
+    <a routerLink="/check-out" *ngIf="cart.items.length !== 0" class="btn btn-primary">Confirmar orden</a>
+  </div>
+</div>

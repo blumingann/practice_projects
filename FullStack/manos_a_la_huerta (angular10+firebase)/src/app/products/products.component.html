@@ -1,0 +1,29 @@
+<h2>Nuestros Productos</h2>
+<a class="route_link" ng-mousemove="refresh($event)"></a>
+
+<div class="row">
+  <div class="col">
+    <div class="btn-group-md" role="group">
+      <a *ngFor="let c of categories" routerLink="/" [queryParams]={category:c.category} class="btn btn-light"
+        type="button" [class.active]="category === c.category">{{c.name}}</a>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <ng-container *ngFor="let product of filteredProducts; let i = index">
+    <div class="col bd-content">
+      <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src={{product.imageUrl}} alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">{{product.title}}</h5>
+          <p class="card-text">{{product.price | currency:'USD':'symbol'}}</p>
+        </div>
+        <div *ngIf="showActions" class="card-footer">
+          <product-quantity [product]="product" [shopping-cart]="cart"></product-quantity>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="(i + 1) % 4 === 0" class="w-100"></div>
+  </ng-container>
+</div>

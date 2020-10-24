@@ -1,0 +1,42 @@
+<div class="row">
+  <div class="col-md-8 col-sm-12">
+    <ng-container *ngIf="order$ | async as order">
+      <div>
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title text-center">Detalles del pedido Nro: {{order.orderId}}</h4>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                <div>
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                      <span class="font-weight-bold">Total: {{order.totalPrice | currency:'USD':'symbol'}} </span>
+                    </li>
+                    <li class="list-group-item">
+                      <span class="font-weight-bold">Cantidad de artículos: {{order.totalQuantity}} </span>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+              <li class="list-group-item"><span class="font-weight-bold">Datos de envío:</span>
+                <div>
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                      {{order.items[$key].quantity}} x {{order.items[$key].title}}
+                      <div class="float-right">
+                        {{order.items[key].price * order.items[key].quantity | currency:'USD':'symbol'}}
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <ng-template #notFound>
+        Opps! No encontramos ese pedido
+      </ng-template>
+    </ng-container>
+  </div>
+</div>

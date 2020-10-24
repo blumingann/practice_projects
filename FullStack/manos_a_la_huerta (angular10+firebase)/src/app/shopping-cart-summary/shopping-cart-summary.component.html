@@ -1,0 +1,21 @@
+<div class="card" *ngIf="cart | async as cart">
+  <div class="card-body">
+    <h5 class="card-title">Resumen:</h5>
+    <p class="card-text">Tu orden contiene {{cart.totalItemsCount}} artículos</p>
+    <ul class="list-group list-group-flush">
+      <li *ngFor="let productId of cart.productIds" class="list-group-item">
+        {{cart.items[productId].quantity}} x {{cart.items[productId].title}}
+        <div class="float-right">
+          {{cart.items[productId].price * cart.items[productId].quantity | currency:'USD':'symbol'}}
+        </div>
+      </li>
+      <li class="list-group-item font-weight-bold">
+        Total:
+        <div class="float-right">
+          {{cart.totalPrice | currency:'USD': 'symbol'}} + (envío) =
+          {{cart.totalPrice + 50 | currency:'USD':'symbol'}}
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
